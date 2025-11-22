@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Menu | Online Restaurant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+ 
+ 
+        .menu-filter {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(44, 62, 80, 0.06);
+            border-radius: 16px;
+            max-width: 1100px;
+            margin: 2rem auto 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: #f1faee;
+            color: #2d6a4f;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1.05rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            outline: none;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: #2d6a4f;
+            color: #fff;
+        }
+
+        .menu-items {
+            margin: 2.5rem auto;
+            max-width: 1100px;
+            padding: 0 1rem;
+        }
+
+        .menu-category {
+            margin-bottom: 2.5rem;
+        }
+
+        .category-title {
+            color: #2d6a4f;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+            text-align: left;
+        }
+
+        .menu-grid {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+
+        .menu-item {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(44, 62, 80, 0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 320px;
+            min-width: 220px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            transition: transform 0.18s, box-shadow 0.18s;
+            position: relative;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 6px 24px rgba(44, 62, 80, 0.13);
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 3px solid #ffb703;
+        }
+
+        .menu-item-content {
+            padding: 1.2rem 1.2rem 1.5rem 1.2rem;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .menu-item-content h3 {
+            color: #2d6a4f;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-item-content p {
+            color: #444;
+            font-size: 1rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .menu-item-price {
+            color: #ffb703;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn-add {
+            background: #2d6a4f;
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: auto;
+        }
+
+        .btn-add:hover {
+            background: #40916c;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1100px) {
+            .menu-grid {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .menu-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .menu-item {
+                width: 90%;
+                max-width: 400px;
+            }
+
+            .menu-filter {
+                padding: 1rem 0.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .menu-items {
+                padding: 0;
+            }
+
+            .menu-item {
+                width: 100%;
+                min-width: unset;
+            }
+
+            .category-title {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header/Navbar (same as index.html) -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html">Online<span>Restaurant</span></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <button class="btn btn-reservation">Reservations</button>
+                <button class="btn btn-cart" id="cart-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </button>
+            </div>
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Menu Hero -->
+    <section class="page-hero">
+        <h1>Our Menu</h1>
+        <p>Discover our culinary creations</p>
+    </section>
+
+    <!-- Menu Filter -->
+    <section class="menu-filter">
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-category="all">All</button>
+            <button class="filter-btn" data-category="starters">Starters</button>
+            <button class="filter-btn" data-category="mains">Main Courses</button>
+            <button class="filter-btn" data-category="desserts">Desserts</button>
+            <button class="filter-btn" data-category="drinks">Drinks</button>
+        </div>
+    </section>
+
+    <!-- Menu Items -->
+    <section class="menu-items">
+        <div class="menu-container">
+            <!-- Starters -->
+            <div class="menu-category" data-category="starters">
+                <h2 class="category-title">Starters</h2>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-content">
+                            <h3>Truffle Arancini</h3>
+                            <p>Crispy risotto balls with black truffle and mozzarella</p>
+                            <div class="menu-item-price">$14.99</div>
+                            <button class="btn btn-add">Add to Order</button>
+                        </div>
+                        <img src="images/starter1.jpeg" alt="Truffle Arancini">
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-content">
+                            <h3>Burrata Salad</h3>
+                            <p>Fresh burrata with heirloom tomatoes and basil</p>
+                            <div class="menu-item-price">$16.99</div>
+                            <button class="btn btn-add">Add to Order</button>
+                        </div>
+                        <img style="width: 200px;" src="images/starter2.webp" alt="Burrata Salad">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Courses -->
+            <div class="menu-category" data-category="mains">
+                <h2 class="category-title">Main Courses</h2>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-content">
+                            <h3>Filet Mignon</h3>
+                            <p>8oz grass-fed beef with truffle mashed potatoes</p>
+                            <div class="menu-item-price">$38.99</div>
+                            <button class="btn btn-add">Add to Order</button>
+                        </div>
+                        <img src="images/main1.jpeg" alt="Filet Mignon">
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-content">
+                            <h3>Mushroom Risotto</h3>
+                            <p>Creamy arborio rice with wild mushrooms and parmesan</p>
+                            <div class="menu-item-price">$24.99</div>
+                            <button class="btn btn-add">Add to Order</button>
+                        </div>
+                        <img src="images/main2.jpeg" alt="Mushroom Risotto">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desserts -->
+            <div class="menu-category" data-category="desserts">
+                <h2 class="category-title">Desserts</h2>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-content">
+                            <h3>Tiramisu</h3>
+                            <p>Classic Italian dessert with espresso and mascarpone</p>
+                            <div class="menu-item-price">$12.99</div>
+                            <button class="btn btn-add">Add to Order</button>
+                        </div>
+                        <img src="images/dessert1.jpeg" alt="Tiramisu">
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-content">
+                            <h3>Chocolate Fondant</h3>
+                            <p>Warm chocolate cake with a molten center</p>
+                            <div class="menu-item-price">$13.99</div>
+                            <button class="btn btn-add">Add to Order</button>
+                        </div>
+                        <img src="images/dessert2.jpeg" alt="Chocolate Fondant">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Drinks -->
+            <div class="menu-category" data-category="drinks">
+                <h2 class="category-title">Drinks</h2>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-item-content">
+                            <h3>Signature Cocktails</h3>
+                            <p>Ask your server about our seasonal creations</p>
+                            <div class="menu-item-price">$14.99</div>
+                            <button class="btn btn-add">Add to Order</button>
+                        </div>
+                        <img src="images/drink1.jpeg" alt="Signature Cocktails">
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-content">
+                            <h3>Wine Selection</h3>
+                            <p>Extensive list of international wines by the glass or bottle</p>
+                            <div class="menu-item-price">$12.99 - $95.99</div>
+                            <button class="btn btn-add">Add to Order</button>
+                        </div>
+                        <img src="images/drink2.jpeg" alt="Wine Selection">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (same as index.html) -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Online Restaurant</h3>
+                <p>123 foodie city<br>Haldwani City, HLD 12345</p>
+                <p>Phone: 000-000-0000</p>
+                <p>Email: info@onlinerestaurant.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Hours</h3>
+                <p>Monday - Thursday: 11am - 10pm</p>
+                <p>Friday - Saturday: 11am - 11pm</p>
+                <p>Sunday: 10am - 9pm</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-yelp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Online Restaurant. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Order</h3>
+            <button class="close-cart" id="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be added here dynamically -->
+            <div class="empty-cart">Your cart is empty</div>
+        </div>
+        <div class="cart-total">
+            <h4>Total: <span id="cart-total">$0.00</span></h4>
+        </div>
+        <button class="btn btn-checkout">Proceed to Checkout</button>
+    </div>
+    <div class="cart-overlay" id="cart-overlay"></div>
+
+    <script src="script.js"></script>
+    <script>
+        // Menu Filter Functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const category = this.dataset.category;
+                    const menuCategories = document.querySelectorAll('.menu-category');
+
+                    if (category === 'all') {
+                        menuCategories.forEach(cat => cat.style.display = 'block');
+                    } else {
+                        menuCategories.forEach(cat => {
+                            if (cat.dataset.category === category) {
+                                cat.style.display = 'block';
+                            } else {
+                                cat.style.display = 'none';
+                            }
+                        });
+                    }
+                });
+            });
+
+            // Add to cart functionality for menu items
+            document.querySelectorAll('.menu-item .btn-add').forEach(button => {
+                button.addEventListener('click', function () {
+                    const menuItem = this.closest('.menu-item');
+                    const item = {
+                        id: Date.now(),
+                        title: menuItem.querySelector('h3').textContent,
+                        price: parseFloat(menuItem.querySelector('.menu-item-price').textContent.replace('$', '')),
+                        image: menuItem.querySelector('img').src,
+                        quantity: 1
+                    };
+
+                    // Check if item already exists in cart
+                    const existingItem = cart.find(cartItem => cartItem.title === item.title);
+                    if (existingItem) {
+                        existingItem.quantity += 1;
+                    } else {
+                        cart.push(item);
+                    }
+
+                    updateCart();
+                    showAddToCartAnimation(this);
+                });
+            });
+        });
+        // Menu API integration
+        async function fetchMenuItems(category = null) {
+            try {
+                let url = 'http://localhost:5000/menu';
+                if (category && category !== 'all') {
+                    url += `?category=${category}`;
+                }
+
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch menu items');
+                }
+
+                const menuItems = await response.json();
+                displayMenuItems(menuItems);
+            } catch (error) {
+                console.error('Error:', error);
+                // Fallback to static menu if API fails
+                console.log('Using static menu');
+            }
+        }
+
+        function displayMenuItems(items) {
+            // For now, keep static menu, but could replace with dynamic
+            console.log('Menu items:', items);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchMenuItems();
+
+            // Filter buttons
+            document.querySelectorAll('.filter-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    const category = this.dataset.category;
+                    fetchMenuItems(category);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

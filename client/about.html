@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Online Restaurant</title>
+    <style>
+        /* Reset and base styles */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+            background: #faf7f2;
+            color: #222;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Navbar */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+
+        .logo a {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2d6a4f;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #ffb703;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #222;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links .active {
+            color: #2d6a4f;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            background: #2d6a4f;
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background: #40916c;
+        }
+
+        .btn-cart {
+            position: relative;
+            background: #ffb703;
+            color: #222;
+        }
+
+        .cart-count {
+            background: #e63946;
+            color: #fff;
+            border-radius: 50%;
+            font-size: 0.8rem;
+            padding: 0.2em 0.5em;
+            position: absolute;
+            top: -8px;
+            right: -8px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .hamburger .line {
+            width: 25px;
+            height: 3px;
+            background: #2d6a4f;
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        .page-hero {
+            background: linear-gradient(120deg, #2d6a4f 60%, #ffb703 100%);
+            color: #fff;
+            text-align: center;
+            padding: 4rem 1rem 2.5rem 1rem;
+        }
+
+        .page-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        .page-hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+        }
+
+        /* About Content */
+        .about-content {
+            background: #fff;
+            margin: 2rem auto;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(44, 62, 80, 0.07);
+            max-width: 1100px;
+            padding: 2.5rem 2rem;
+        }
+
+        .about-content .container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .about-text {
+            flex: 2;
+        }
+
+        .about-text h2 {
+            color: #2d6a4f;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 220px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .about-image img {
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid #ffb703;
+            box-shadow: 0 2px 12px rgba(44, 62, 80, 0.08);
+        }
+
+        /* Our Values */
+        .our-values {
+            background: #f1faee;
+            padding: 3rem 1rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #2d6a4f;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+        }
+
+        .values-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .value-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(44, 62, 80, 0.07);
+            padding: 2rem 1.5rem;
+            width: 260px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .value-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 6px 24px rgba(44, 62, 80, 0.13);
+        }
+
+        .value-card i {
+            font-size: 2.2rem;
+            color: #ffb703;
+            margin-bottom: 1rem;
+        }
+
+        .value-card h3 {
+            color: #2d6a4f;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .value-card p {
+            font-size: 1rem;
+            color: #444;
+        }
+
+        /* Team Section */
+        .our-team {
+            background: #fff;
+            padding: 3rem 1rem;
+            max-width: 1100px;
+            margin: 2rem auto;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(44, 62, 80, 0.07);
+            text-align: center;
+        }
+
+        .team-container {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .team-member {
+            background: #f1faee;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(44, 62, 80, 0.07);
+            padding: 1.5rem 1rem;
+            width: 220px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-8px) scale(1.04);
+            box-shadow: 0 6px 24px rgba(44, 62, 80, 0.13);
+        }
+
+        .team-member img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #ffb703;
+            margin-bottom: 1rem;
+        }
+
+        .team-member h3 {
+            color: #2d6a4f;
+            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
+        }
+
+        .team-member p {
+            color: #444;
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #2d6a4f;
+            color: #fff;
+            padding: 2.5rem 1rem 1rem 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto 1.5rem auto;
+            justify-content: space-between;
+        }
+
+        .footer-section {
+            min-width: 180px;
+            flex: 1;
+        }
+
+        .footer-section h3 {
+            color: #ffb703;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-section ul a:hover {
+            color: #ffb703;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .social-icons a {
+            color: #fff;
+            font-size: 1.3rem;
+            transition: color 0.2s;
+        }
+
+        .social-icons a:hover {
+            color: #ffb703;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            color: #fff;
+            font-size: 0.95rem;
+            border-top: 1px solid #40916c;
+            padding-top: 1rem;
+            margin-top: 1rem;
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 350px;
+            height: 100%;
+            background: #fff;
+            box-shadow: -2px 0 16px rgba(44, 62, 80, 0.13);
+            z-index: 200;
+            transition: right 0.3s;
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem 1rem;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #2d6a4f;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 1.5rem;
+        }
+
+        .empty-cart {
+            color: #888;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .cart-total {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #2d6a4f;
+        }
+
+        .btn-checkout {
+            background: #ffb703;
+            color: #222;
+            font-weight: bold;
+            width: 100%;
+            padding: 0.8rem 0;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            transition: background 0.2s;
+        }
+
+        .btn-checkout:hover {
+            background: #ffd166;
+        }
+
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(44, 62, 80, 0.18);
+            z-index: 150;
+            display: none;
+        }
+
+        .cart-overlay.active {
+            display: block;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+
+            .about-content .container,
+            .team-container,
+            .footer-content,
+            .values-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-image img {
+                width: 180px;
+                height: 180px;
+            }
+
+            .team-member {
+                width: 90%;
+                max-width: 320px;
+            }
+
+            .value-card {
+                width: 90%;
+                max-width: 320px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+                margin-top: 1rem;
+                display: none;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-buttons {
+                width: 100%;
+                margin-top: 1rem;
+                justify-content: flex-start;
+            }
+
+            .hamburger {
+                display: flex;
+                margin-left: auto;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .about-content,
+            .our-team {
+                padding: 1rem 0.3rem;
+            }
+
+            .footer-content {
+                gap: 1rem;
+            }
+
+            .cart-sidebar {
+                width: 100vw;
+                padding: 1rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html">Online<span>Restaurant</span></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <button class="btn btn-reservation">Reservations</button>
+                <button class="btn btn-cart" id="cart-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </button>
+            </div>
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- About Hero -->
+    <section class="page-hero">
+        <h1>Our Story</h1>
+        <p>Discover the passion behind Online Restaurant</p>
+    </section>
+
+    <!-- About Content -->
+    <section class="about-content">
+        <div class="container">
+            <div class="about-text">
+                <h2>Welcome to Online Restaurant</h2>
+                <p>Founded in 2024, Online Restaurant began as a small family-owned restaurant with a simple mission: to
+                    create exceptional dining experiences using the finest ingredients.</p>
+                <p>Over the years, we've grown into one of the city's most celebrated dining destinations, earning
+                    numerous awards and accolades for our innovative cuisine and impeccable service.</p>
+                <p>Our chef, Michael Rodriguez, brings over 1 years of culinary expertise from kitchens around the
+                    world, blending traditional techniques with modern creativity.</p>
+            </div>
+            <div class="about-image">
+                <img src="images/chef1.jpg" alt="Our Chef">
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values -->
+    <section class="our-values">
+        <h2 class="section-title">Our Values</h2>
+        <div class="values-container">
+            <div class="value-card">
+                <i class="fas fa-seedling"></i>
+                <h3>Sustainability</h3>
+                <p>We partner with local farmers and producers who share our commitment to sustainable practices.</p>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-heart"></i>
+                <h3>Passion</h3>
+                <p>Every dish is prepared with care and attention to detail by our dedicated culinary team.</p>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-users"></i>
+                <h3>Community</h3>
+                <p>We believe in giving back and supporting the local community that supports us.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="our-team">
+        <h2 class="section-title">Meet Our Team</h2>
+        <div class="team-container">
+            <div class="team-member">
+                <img style="width: 200px;" src="images/chef1.jpg" alt="Michael Rodriguez">
+                <h3>Michael Rodriguez</h3>
+                <p>Head Chef</p>
+            </div>
+            <div class="team-member">
+                <img style="width: 200px;" src="images/chef2.jpg" alt="Sarah Johnson">
+                <h3>Sarah Johnson</h3>
+                <p>Pastry Chef</p>
+            </div>
+            <div class="team-member">
+                <img style="width: 200px;" src="images/chef3.jpg" alt="David Kim">
+                <h3>David Kim</h3>
+                <p>Sous Chef</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (same as index.html) -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Online Restaurant</h3>
+                <p>123 kathgodam Street<br>Haldwani City, HLD 12345</p>
+                <p>Phone: 000-000-0000</p>
+                <p>Email: info@onlinerestaurant.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Hours</h3>
+                <p>Monday - Thursday: 11am - 10pm</p>
+                <p>Friday - Saturday: 11am - 11pm</p>
+                <p>Sunday: 10am - 9pm</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-yelp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Online Restaurant. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Sidebar (same as index.html) -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Order</h3>
+            <button class="close-cart" id="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be added here dynamically -->
+            <div class="empty-cart">Your cart is empty</div>
+        </div>
+        <div class="cart-total">
+            <h4>Total: <span id="cart-total">$0.00</span></h4>
+        </div>
+        <button class="btn btn-checkout">Proceed to Checkout</button>
+    </div>
+    <div class="cart-overlay" id="cart-overlay"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

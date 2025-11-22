@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Restaurant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* --- Hero Section --- */
+        /* --- Hero Section --- */
+        .hero {
+            background: linear-gradient(120deg, #2d6a4f 60%, #ffb703 100%);
+            color: #fff;
+            text-align: center;
+            padding: 5rem 1rem 4rem 1rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: #ffb703;
+            color: #222;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            background: #ffd166;
+            color: #222;
+        }
+
+        .btn-secondary {
+            background: #fff;
+            color: #2d6a4f;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            text-decoration: none;
+            border: 2px solid #2d6a4f;
+        }
+
+        .btn-secondary:hover {
+            background: #2d6a4f;
+            color: #fff;
+        }
+
+        /* --- Special Offers --- */
+        .special-offers {
+            background: #fff;
+            padding: 3rem 1rem 2rem 1rem;
+            max-width: 1200px;
+            margin: 2.5rem auto 0 auto;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(44, 62, 80, 0.07);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #2d6a4f;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .offers-container {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .offer-card {
+            background: #f1faee;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(44, 62, 80, 0.07);
+            overflow: hidden;
+            width: 320px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.18s, box-shadow 0.18s;
+        }
+
+        .offer-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 6px 24px rgba(44, 62, 80, 0.13);
+        }
+
+        .offer-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 3px solid #ffb703;
+        }
+
+        .offer-content {
+            padding: 1.2rem 1.2rem 1.5rem 1.2rem;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .offer-content h3 {
+            color: #2d6a4f;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .offer-content p {
+            color: #444;
+            font-size: 1rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .price {
+            color: #ffb703;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .original-price {
+            color: #888;
+            text-decoration: line-through;
+            font-size: 0.95rem;
+            margin-left: 0.5rem;
+        }
+
+        .btn-add {
+            background: #2d6a4f;
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: auto;
+        }
+
+        .btn-add:hover {
+            background: #40916c;
+        }
+
+        /* --- Features Section --- */
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            background: #f1faee;
+            padding: 3rem 1rem;
+            margin: 2.5rem 0;
+            border-radius: 18px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            flex: 1;
+            min-width: 220px;
+            max-width: 340px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(44, 62, 80, 0.07);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: transform 0.18s, box-shadow 0.18s;
+        }
+
+        .feature:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 6px 24px rgba(44, 62, 80, 0.13);
+        }
+
+        .feature i {
+            font-size: 2.2rem;
+            color: #ffb703;
+            margin-bottom: 1rem;
+        }
+
+        .feature h3 {
+            color: #2d6a4f;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .feature p {
+            font-size: 1rem;
+            color: #444;
+        }
+
+        /* --- Testimonials --- */
+        .testimonials {
+            background: #fff;
+            padding: 3rem 1rem 2rem 1rem;
+            max-width: 1200px;
+            margin: 2.5rem auto 0 auto;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(44, 62, 80, 0.07);
+        }
+
+        .testimonial-container {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .testimonial {
+            background: #f1faee;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(44, 62, 80, 0.07);
+            padding: 2rem 1.5rem;
+            width: 320px;
+            text-align: center;
+            transition: transform 0.18s, box-shadow 0.18s;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 6px 24px rgba(44, 62, 80, 0.13);
+        }
+
+        .rating {
+            color: #ffb703;
+            margin-bottom: 0.7rem;
+        }
+
+        .customer {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .customer img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ffb703;
+        }
+
+        .customer h4 {
+            color: #2d6a4f;
+            font-size: 1.05rem;
+            margin: 0;
+        }
+
+        /* --- Newsletter --- */
+        .newsletter {
+            background: linear-gradient(120deg, #2d6a4f 60%, #ffb703 100%);
+            color: #fff;
+            text-align: center;
+            padding: 3rem 1rem 2.5rem 1rem;
+            border-radius: 18px;
+            max-width: 900px;
+            margin: 2.5rem auto 0 auto;
+            box-shadow: 0 4px 24px rgba(44, 62, 80, 0.07);
+        }
+
+        .newsletter-content h2 {
+            font-size: 2rem;
+            margin-bottom: 0.7rem;
+            letter-spacing: 1px;
+        }
+
+        .newsletter-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        #newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        #newsletter-form input[type="email"] {
+            padding: 0.7rem 1rem;
+            border-radius: 25px;
+            border: none;
+            font-size: 1rem;
+            width: 260px;
+            max-width: 100%;
+            outline: none;
+        }
+
+        #newsletter-form button {
+            background: #fff;
+            color: #2d6a4f;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        #newsletter-form button:hover {
+            background: #2d6a4f;
+            color: #fff;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: #2d6a4f;
+            color: #fff;
+            padding: 2.5rem 1rem 1rem 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto 1.5rem auto;
+            justify-content: space-between;
+        }
+
+        .footer-section {
+            min-width: 180px;
+            flex: 1;
+        }
+
+        .footer-section h3 {
+            color: #ffb703;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-section ul a:hover {
+            color: #ffb703;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .social-icons a {
+            color: #fff;
+            font-size: 1.3rem;
+            transition: color 0.2s;
+        }
+
+        .social-icons a:hover {
+            color: #ffb703;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            color: #fff;
+            font-size: 0.95rem;
+            border-top: 1px solid #40916c;
+            padding-top: 1rem;
+            margin-top: 1rem;
+        }
+
+        /* --- Cart Sidebar & Modal (optional, for completeness) --- */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 350px;
+            height: 100%;
+            background: #fff;
+            box-shadow: -2px 0 16px rgba(44, 62, 80, 0.13);
+            z-index: 200;
+            transition: right 0.3s;
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem 1rem;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #2d6a4f;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 1.5rem;
+        }
+
+        .empty-cart {
+            color: #888;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .cart-total {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #2d6a4f;
+        }
+
+        .btn-checkout {
+            background: #ffb703;
+            color: #222;
+            font-weight: bold;
+            width: 100%;
+            padding: 0.8rem 0;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            transition: background 0.2s;
+        }
+
+        .btn-checkout:hover {
+            background: #ffd166;
+        }
+
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(44, 62, 80, 0.18);
+            z-index: 150;
+            display: none;
+        }
+
+        .cart-overlay.active {
+            display: block;
+        }
+
+        /* --- Reservation Modal --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 300;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: auto;
+            background: rgba(44, 62, 80, 0.18);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #fff;
+            margin: 5% auto;
+            padding: 2rem 1.5rem;
+            border-radius: 18px;
+            max-width: 400px;
+            box-shadow: 0 4px 24px rgba(44, 62, 80, 0.13);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1.2rem;
+            font-size: 2rem;
+            color: #2d6a4f;
+            cursor: pointer;
+        }
+
+        .modal-content h2 {
+            color: #2d6a4f;
+            margin-bottom: 1.2rem;
+            text-align: center;
+        }
+
+        #reservation-form .form-group {
+            margin-bottom: 1.1rem;
+        }
+
+        #reservation-form label {
+            display: block;
+            margin-bottom: 0.4rem;
+            color: #222;
+            font-weight: 500;
+        }
+
+        #reservation-form input,
+        #reservation-form select {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: #fff;
+            color: #222;
+            transition: border 0.2s;
+            font-family: inherit;
+        }
+
+        #reservation-form input:focus,
+        #reservation-form select:focus {
+            border-color: #2d6a4f;
+            outline: none;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 1100px) {
+
+            .offers-container,
+            .testimonial-container,
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .offer-card,
+            .testimonial,
+            .feature {
+                width: 90%;
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .footer-content {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .newsletter {
+                padding: 2rem 0.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title,
+            .newsletter-content h2 {
+                font-size: 1.3rem;
+            }
+
+            .special-offers,
+            .testimonials,
+            .features {
+                padding: 1.2rem 0.3rem;
+            }
+
+            .modal-content {
+                padding: 1rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header/Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html">Online<span>Restaurant</span></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <button class="btn btn-reservation">Reservations</button>
+                <button class="btn btn-cart" id="cart-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </button>
+            </div>
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Exquisite Dining Experience</h1>
+            <p>Discover our carefully crafted menu featuring the finest ingredients and culinary expertise</p>
+            <div class="hero-buttons">
+                <a href="menu.html" class="btn btn-primary">View Menu</a>
+                <a href="#" class="btn btn-secondary">Order Online</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offers -->
+    <section class="special-offers">
+        <h2 class="section-title">Today's Specials</h2>
+        <div class="offers-container">
+            <div class="offer-card">
+                <img src="images/dish1.webp" alt="Truffle Pasta">
+                <div class="offer-content">
+                    <h3>Truffle Pasta</h3>
+                    <p>Handmade pasta with black truffle and parmesan</p>
+                    <div class="price">1600 <span class="original-price">2399</span></div>
+                    <button class="btn btn-add">Add to Cart</button>
+                </div>
+            </div>
+            <div class="offer-card">
+                <img src="images/dish2.jpg" alt="Grilled Salmon">
+                <div class="offer-content">
+                    <h3>Grilled Salmon</h3>
+                    <p>Fresh Atlantic salmon with lemon butter sauce</p>
+                    <div class="price">1500 <span class="original-price">2000</span></div>
+                    <button class="btn btn-add">Add to Cart</button>
+                </div>
+            </div>
+            <div class="offer-card">
+                <img src="images/dish3.jpeg" alt="Chocolate Soufflé">
+                <div class="offer-content">
+                    <h3>Chocolate Soufflé</h3>
+                    <p>Warm chocolate soufflé with vanilla ice cream</p>
+                    <div class="price">750 <span class="original-price">1000</span></div>
+                    <button class="btn btn-add">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="feature">
+            <i class="fas fa-utensils"></i>
+            <h3>Fresh Ingredients</h3>
+            <p>We source only the freshest, locally-sourced ingredients for all our dishes.</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-truck"></i>
+            <h3>Fast Delivery</h3>
+            <p>Get your food delivered hot and fresh within 30 minutes or it's free.</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-award"></i>
+            <h3>Award Winning</h3>
+            <p>Recognized as one of the top restaurants in the city for 5 years running.</p>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <h2 class="section-title">What Our Customers Say</h2>
+        <div class="testimonial-container">
+            <div class="testimonial">
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p>"The truffle pasta was absolutely divine!"</p>
+                <div class="customer">
+                    <img src="images/customer1.jpg" alt="Sarah Johnson">
+                    <h4>Sahrah Singh</h4>
+                </div>
+            </div>
+            <div class="testimonial">
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p>"Impeccable service and the chocolate soufflé is to die for. Will definitely be back!"</p>
+                <div class="customer">
+                    <img src="images/customer2.jpg" alt="Michael Chen">
+                    <h4>Manish </h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="newsletter-content">
+            <h2>Subscribe to Our Newsletter</h2>
+            <p>Get exclusive offers, menu updates, and event invitations</p>
+            <form id="newsletter-form">
+                <input type="email" placeholder="Your email address" required>
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Online Restaurant</h3>
+                <p>123 foodie area<br>Haldwani City, HLD 12345</p>
+                <p>Phone: 000-000-0000</p>
+                <p>Email: info@onlinerestaurant.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Hours</h3>
+                <p>Monday - Thursday: 11am - 10pm</p>
+                <p>Friday - Saturday: 11am - 11pm</p>
+                <p>Sunday: 10am - 9pm</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-yelp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Online Restaurant. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Order</h3>
+            <button class="close-cart" id="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be added here dynamically -->
+            <div class="empty-cart">Your cart is empty</div>
+        </div>
+        <div class="cart-total">
+            <h4>Total: <span id="cart-total">$0.00</span></h4>
+        </div>
+        <button class="btn btn-checkout">Proceed to Checkout</button>
+    </div>
+    <div class="cart-overlay" id="cart-overlay"></div>
+
+    <!-- Reservation Modal -->
+    <div class="modal" id="reservation-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Make a Reservation</h2>
+            <form id="reservation-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">Time</label>
+                    <input type="time" id="time" required>
+                </div>
+                <div class="form-group">
+                    <label for="guests">Number of Guests</label>
+                    <select id="guests" required>
+                        <option value="1">1 person</option>
+                        <option value="2">2 people</option>
+                        <option value="3">3 people</option>
+                        <option value="4">4 people</option>
+                        <option value="5">5+ people</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Book Table</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

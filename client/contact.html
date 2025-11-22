@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Online Restaurant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* --- Contact Page Styles --- */
+        .contact-content {
+            background: #fff;
+            margin: 2rem auto;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(44, 62, 80, 0.07);
+            max-width: 1100px;
+            padding: 2.5rem 2rem;
+        }
+
+        .contact-content .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            align-items: flex-start;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 260px;
+        }
+
+        .contact-info h2 {
+            color: #2d6a4f;
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+            color: #444;
+            font-size: 1.05rem;
+        }
+
+        .info-item i {
+            color: #ffb703;
+            font-size: 1.3rem;
+            margin-top: 2px;
+        }
+
+        .social-links {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 1.2rem;
+        }
+
+        .social-links a {
+            color: #2d6a4f;
+            font-size: 1.5rem;
+            transition: color 0.2s;
+        }
+
+        .social-links a:hover {
+            color: #ffb703;
+        }
+
+        .contact-form {
+            flex: 2;
+            min-width: 300px;
+            background: #f1faee;
+            border-radius: 14px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 2px 12px rgba(44, 62, 80, 0.06);
+        }
+
+        .contact-form h2 {
+            color: #2d6a4f;
+            font-size: 1.4rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            color: #222;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: #fff;
+            color: #222;
+            transition: border 0.2s;
+            font-family: inherit;
+            resize: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #2d6a4f;
+            outline: none;
+        }
+
+        .btn-primary {
+            background: #2d6a4f;
+            color: #fff;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            background: #40916c;
+        }
+
+        /* Map Section */
+        .map {
+            margin: 2.5rem auto 0 auto;
+            max-width: 1100px;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(44, 62, 80, 0.07);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .contact-content .container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .contact-form {
+                width: 100%;
+                padding: 1.5rem 0.7rem;
+            }
+
+            .map {
+                border-radius: 10px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .contact-content {
+                padding: 1rem 0.3rem;
+            }
+
+            .contact-form {
+                padding: 1rem 0.3rem;
+            }
+
+            .map iframe {
+                height: 280px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html">Online<span>Restaurant</span></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <button class="btn btn-reservation">Reservations</button>
+                <button class="btn btn-cart" id="cart-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </button>
+            </div>
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contact Hero -->
+    <section class="page-hero">
+        <h1>Contact Us</h1>
+        <p>We'd love to hear from you</p>
+    </section>
+
+    <!-- Contact Content -->
+    <section class="contact-content">
+        <div class="container">
+            <div class="contact-info">
+                <h2>Get in Touch</h2>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>123 kathgodam, Haldwani City, HLD 12345</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <p>(123) 456-7890</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>info@onlinerestaurant.com</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <p>Monday - Thursday: 11am - 10pm<br>
+                        Friday - Saturday: 11am - 11pm<br>
+                        Sunday: 10am - 9pm</p>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-yelp"></i></a>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h2>Send Us a Message</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer (same as index.html) -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Online Restaurant</h3>
+                <p>123 foodie city<br>Haldwani City, HLD 12345</p>
+                <p>Phone: 000-000-0000</p>
+                <p>Email: info@onlinerestaurant.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Hours</h3>
+                <p>Monday - Thursday: 11am - 10pm</p>
+                <p>Friday - Saturday: 11am - 11pm</p>
+                <p>Sunday: 10am - 9pm</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-yelp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Online Restaurant. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Order</h3>
+            <button class="close-cart" id="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be added here dynamically -->
+            <div class="empty-cart">Your cart is empty</div>
+        </div>
+        <div class="cart-total">
+            <h4>Total: <span id="cart-total">$0.00</span></h4>
+        </div>
+        <button class="btn btn-checkout">Proceed to Checkout</button>
+    </div>
+    <div class="cart-overlay" id="cart-overlay"></div>
+
+    <script src="script.js"></script>
+    <script>
+        // Contact Form Submission
+        document.addEventListener('DOMContentLoaded', function () {
+            const contactForm = document.getElementById('contactForm');
+
+            contactForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                // Get form values
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+
+                // Here you would typically send this data to a server
+                console.log('Contact Form Submission:', {
+                    name,
+                    email,
+                    phone,
+                    subject,
+                    message
+                });
+
+                // Show success message
+                alert(`Thank you, ${name}! Your message has been sent. We'll get back to you soon.`);
+
+                // Reset form
+                contactForm.reset();
+            });
+        });
+    </script>
+</body>
+
+</html>
